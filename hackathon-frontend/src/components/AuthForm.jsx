@@ -49,48 +49,48 @@ const AuthForm = () => {
     <div className={`container ${active ? 'active' : ''}`}>
       <div className="form-box login">
         <form onSubmit={handleLogin}>
-          <h1>Login</h1>
+          <h1>Войти</h1>
           <div className="input-box">
-            <input type="email" name="email" placeholder="Email" required onChange={handleChange} />
+            <input type="email" name="email" placeholder="Логин" required onChange={handleChange} />
             <i className='bx bxs-user'></i>
           </div>
           <div className="input-box">
-            <input type="password" name="password" placeholder="Password" required onChange={handleChange} />
+            <input type="password" name="password" placeholder="Пароль" required onChange={handleChange} />
             <i className='bx bxs-lock-alt'></i>
           </div>
-          <button type="submit" className="btn">Login</button>
+          <button type="submit" className="btn">Войти</button>
         </form>
       </div>
 
       <div className="form-box register">
         <form onSubmit={handleRegister}>
-          <h1>Registration</h1>
+          <h1>Регистрация</h1>
           <div className="input-box">
-            <input type="text" name="full_name" placeholder="Full Name" required onChange={handleChange} />
+            <input type="text" name="full_name" placeholder="ФИО" required onChange={handleChange} />
             <i className='bx bxs-user'></i>
           </div>
           <div className="input-box">
-            <input type="email" name="email" placeholder="Email" required onChange={handleChange} />
+            <input type="email" name="email" placeholder="Почта" required onChange={handleChange} />
             <i className='bx bxs-envelope'></i>
           </div>
           <div className="input-box">
-            <input type="password" name="password" placeholder="Password" required onChange={handleChange} />
+            <input type="password" name="password" placeholder="Пароль" required onChange={handleChange} />
             <i className='bx bxs-lock-alt'></i>
           </div>
-          <button type="submit" className="btn">Register</button>
+          <button type="submit" className="btn">Зарегистрироваться</button>
         </form>
       </div>
 
       <div className="toggle-box">
         <div className="toggle-panel toggle-left">
-          <h1>Hello, Welcome!</h1>
-          <p>Don't have an account?</p>
-          <button className="btn register-btn" onClick={() => setActive(true)}>Register</button>
+          <h1>Добро пожаловать!</h1>
+          <p>Еще не успели зарегистрироваться?</p>
+          <button className="btn register-btn" onClick={() => setActive(true)}>Регистрация</button>
         </div>
         <div className="toggle-panel toggle-right">
-          <h1>Welcome Back!</h1>
-          <p>Already have an account?</p>
-          <button className="btn login-btn" onClick={() => setActive(false)}>Login</button>
+          <h1>С возвращением!</h1>
+          <p>Уже есть аккаунт?</p>
+          <button className="btn login-btn" onClick={() => setActive(false)}>Войти</button>
         </div>
       </div>
     </div>

@@ -1,0 +1,42 @@
+/* src/pages/TeamsPage.css */
+.teams-container {
+    padding: 40px;
+    text-align: center;
+  }
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .arrow {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .team-card {
+    width: 200px;
+    height: 200px;
+    background: #f0f0f0;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+  .team-card.active {
+    transform: scale(1.1);
+    opacity: 1;
+    background: #7494ec;
+    color: #fff;
+  }
+  .team-card img {
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  

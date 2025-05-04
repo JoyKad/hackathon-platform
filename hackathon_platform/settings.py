@@ -9,9 +9,9 @@ SECRET_KEY = 'django-insecure-y0ur-s3cr3t-key-h3r3'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',          # ← точно так!
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '2118',   # ← сюда впиши реальный пароль!
+        'PASSWORD': '2118',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -24,31 +24,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'teams',  # ← добавили наше приложение
+
+    'corsheaders',
     'rest_framework',
+    'drf_yasg',            # <-- swagger
+    'teams',
     'accounts',
     'ratings',
-    'corsheaders',
-]
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # можно сюда позже шаблоны положить
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # ← ОБЯЗАТЕЛЬНО ВВЕРХУ!
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,8 +44,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # Сначала пытаем сессионную аутентификацию (кука 'sessionid'),
+        'rest_framework.authentication.SessionAuthentication',
+        # затем JWT
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
@@ -71,14 +62,36 @@ REST_FRAMEWORK = {
     ),
 }
 
+# swagger-дополнения
+SWAGGER_SETTINGS = {
+    # разрешаем UI использовать сессионную аутентификацию
+    'USE_SESSION_AUTH': True,
+    # адреса для логина/логаута (админка)
+    'LOGIN_URL': 'admin:login',
+    'LOGOUT_URL': 'admin:logout',
+}
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],  # тут можно положить ваши шаблоны
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',  # важно для swagger
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 STATIC_URL = '/static/'
-DEBUG = True  # Временно, для локальной разработки
-ALLOWED_HOSTS = ['*']
-CORS_ALLOW_ALL_ORIGINS = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEBUG = True
+ALLOWED_HOSTS = ['*']
 
 print("✅ settings загружен")

@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'full_name', 'user_code']
-
+        ref_name = 'TeamUserSerializer'
 
 # 🛠️ Сериализатор для создания и отображения команд
 class TeamSerializer(serializers.ModelSerializer):

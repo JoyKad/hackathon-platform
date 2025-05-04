@@ -29,3 +29,12 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         attrs['username'] = attrs.get('email')
         return super().validate(attrs)
+
+class UserSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = User
+        ref_name = 'AccountUserSerializer'
+        fields = ['id', 'email', 'full_name', 'user_code', 'is_active', 'is_staff']
+        read_only_fields = fields

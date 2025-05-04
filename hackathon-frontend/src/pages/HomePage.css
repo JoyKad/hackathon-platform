@@ -1,0 +1,82 @@
+/* src/pages/HomePage.css */
+
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #e0e6f1; /* лёгкий фон */
+  }
+  
+  .homepage-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+  
+  .btn-login {
+    background: #4f7aec;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .btn-login:hover {
+    background: #3b5cc4;
+  }
+  
+  .carousel-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+  }
+  
+  .carousel {
+    display: flex;
+    align-items: center;
+  }
+  
+  .arrow {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .arrow:hover {
+    color: #4f7aec;
+  }
+  
+  .cards {
+    display: flex;
+    gap: 20px;
+    margin: 0 20px;
+  }
+  
+  .team-card {
+    width: 160px;
+    height: 160px;
+    background: #f1f1f1;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+    transition: transform 0.3s, background 0.3s, color 0.3s;
+  }
+  .team-card.active {
+    transform: scale(1.1);
+    background: #4f7aec;
+    color: white;
+  }
+  
