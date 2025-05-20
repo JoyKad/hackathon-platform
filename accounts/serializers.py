@@ -22,6 +22,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
+        token['user_code'] = user.user_code
         token['email'] = user.email
         token['full_name'] = user.full_name
         return token
@@ -31,10 +32,21 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         return super().validate(attrs)
 
 class UserSerializer(serializers.ModelSerializer):
-
-
     class Meta:
         model = User
         ref_name = 'AccountUserSerializer'
-        fields = ['id', 'email', 'full_name', 'user_code', 'is_active', 'is_staff']
-        read_only_fields = fields
+        fields = [
+            'id', 'email', 'full_name', 'user_code', 'is_active', 'is_staff',
+            'avatar', 'phone', 'description', 'birthday', 'nationality', 'education'
+        ]
+        read_only_fields = ['id', 'email', 'user_code', 'is_active', 'is_staff']
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['full_name', 'phone', 'description', 'birthday', 'nationality', 'education']
+
+class AvatarUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['avatar']

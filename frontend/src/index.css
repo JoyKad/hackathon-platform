@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 50vw; /* Минимальная ширина - 50% от начальной ширины экрана */
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 50vw; /* Также задаем минимальную ширину для html */
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку при необходимости */
+    box-sizing: border-box;
+}
+
+/* Firefox-специфичные стили */
+@-moz-document url-prefix() {
+    body, html {
+        min-width: 600px !important; /* Жесткое ограничение для Firefox */
+    }
+    
+    #root {
+        min-width: 600px !important;
+    }
+}
+
+/* Общее ограничение для всех элементов */
+* {
+    box-sizing: inherit;
+}
+
+/* Стили для корневого контейнера React */
+#root {
+    min-width: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
+/* Стили для принудительного применения минимальной ширины */
+.window-too-narrow {
+    min-width: 600px !important; /* Фиксированная минимальная ширина */
+}

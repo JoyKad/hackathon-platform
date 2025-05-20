@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, minimum-width=600" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Платформа для управления хакатоном" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Hackathon Platform</title>
+    <script>
+        // Устанавливаем минимальную ширину для окна
+        const minWidth = Math.max(600, window.innerWidth * 0.5); // Не меньше 600px или 50% от начальной ширины
+        
+        // Функция для проверки размера окна
+        function checkWindowSize() {
+            if (window.innerWidth < minWidth) {
+                // Для Firefox добавляем специальную обработку
+                const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+                
+                if (isFirefox) {
+                    // Добавляем предупреждающие стили
+                    document.documentElement.style.setProperty('--min-width-warning', 'block');
+                }
+                
+                // Пытаемся изменить размер окна (может не сработать из-за политик безопасности)
+                try {
+                    window.resizeTo(minWidth, window.innerHeight);
+                } catch (e) {
+                    console.warn('Не удалось изменить размер окна');
+                }
+            }
+        }
+        
+        // Запускаем проверку при загрузке и при изменении размера
+        window.addEventListener('load', checkWindowSize);
+        window.addEventListener('resize', checkWindowSize);
+        
+        // Добавляем базовые стили в head
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                :root {
+                    --min-width-warning: none;
+                }
+                
+                @media (max-width: 600px) {
+                    body::after {
+                        content: "Рекомендуемая минимальная ширина окна - 600px";
+                        display: var(--min-width-warning);
+                        position: fixed;
+                        bottom: 10px;
+                        left: 10px;
+                        background: rgba(220, 53, 69, 0.9);
+                        color: white;
+                        padding: 10px;
+                        border-radius: 5px;
+                        z-index: 10000;
+                    }
+                }
+            </style>
+        `);
+    </script>
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+</body>
+
+</html>
